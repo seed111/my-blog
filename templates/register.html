@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page!</title>
-</head>
-<body>
-    <h1>Fill Your Name Here!</h1>
-    <form action="{{ url_for('hello') }}" method="post">
-        <input type="text" name="name" placeholder="Enter Your Name Here">
-        <button>Submit</button>
-    </form>
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block heading %}
+<h1>Fill Your Name Here!</h1>
+{% endblock %}
+
+
+{% block body %}
+<form action="{{ url_for('hello') }}" method="post">
+    <input type="text" name="name" placeholder="Enter Your Name Here">
+    <button>Submit</button>
+</form>
+{% endblock %}
