@@ -2,6 +2,12 @@
 
 {% block heading %}
 <h1>Fill Your Name Here!</h1>
+
+<style>
+    body {
+        background-color: honeydew;
+    }
+</style>
 {% endblock %}
 
 
@@ -10,4 +16,6 @@
     <input type="text" name="name" placeholder="Enter Your Name Here">
     <button>Submit</button>
 </form>
+
+<li><a href="{{ url_for('index') }}">previous page</a></li>
 {% endblock %}
