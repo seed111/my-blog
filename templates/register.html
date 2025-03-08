@@ -1,7 +1,13 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-<h1>Fill Your Name Here!</h1>
+<h1>Let's have your contact details! 
+    <style>
+        header {
+            background-color: blue;
+        }
+    </style>
+</h1>
 
 <style>
     body {
@@ -13,9 +19,19 @@
 
 
 {% block body %}
+<div>
 <form action="{{ url_for('hello') }}" method="post">
     <input type="text" name="name" placeholder="Enter Your Name Here">
-    <button>Submit</button>
+</div>
+    <br>
+    <div>
+        <input type="text" name="date" id="date" value="YY-MM-DD" placeholder="Enter Your Birth date Here">
+
+    </div>
+    <br>
+    <div>
+        <button>Submit</button>
+    </div>
 </form>
 
 <li><a href="{{ url_for('index') }}">previous page</a></li>
