@@ -6,11 +6,17 @@ This project documents the complete, production ready deployment of a Python Fla
 Project Goal and Solution Summary
 My primary objective was to deploy the Flask application to a production environment quickly and securely, without relying on traditional servers.
 
-| Challenge Faced           | Solution I Built                                                                 | Key Value Delivered                                                   |
-|---------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| Serverless Operations     | I achieved zero server maintenance by deploying the application using AWS ECS Fargate. | I avoided the time and cost of managing underlying EC2 virtual servers. |
-| Security and Global Access| I used CloudFront for SSL termination and as a global CDN.                     | I ensured worldwide HTTPS access and security at the network edge.   |
-| Scalability               | I built a fault tolerant system using an Application Load Balancer ALB across multiple Fargate tasks. | I delivered automatic scaling and high availability for variable user traffic. |
+Challenge Faced: Serverless Operations
+Solution: I deployed the application using AWS ECS Fargate so no server maintenance was needed.
+Key Value: I saved time and avoided the cost of managing EC2 servers.
+
+Challenge Faced: Security and Global Access
+Solution: I used CloudFront for SSL termination and as a global CDN.
+Key Value: I made the application accessible worldwide with HTTPS and kept it secure at the network edge.
+
+Challenge Faced: Scalability
+Solution: I built a fault-tolerant system using an Application Load Balancer across multiple Fargate tasks.
+Key Value: I enabled automatic scaling and high availability to handle changing user traffic.
 
 
 
@@ -72,3 +78,8 @@ I created a CloudFront Distribution, setting the ALB's DNS name as the origin so
 Key Achievements I Delivered
 
 I successfully implemented HTTPS termination at the edge CloudFront, significantly minimizing the attack surface. I built an architecture ready for auto scaling through ECS Fargate and ALB, which can handle unexpected spikes in user traffic seamlessly. I established robust CloudWatch logging and metrics for continuous monitoring of container health and performance. I leveraged serverless services Fargate, CloudFront to achieve high availability while eliminating the operational burden and fixed cost of managing EC2 infrastructure.
+
+<img width="1024" height="1536" alt="image version of the architecture" src="https://github.com/user-attachments/assets/875a4f88-828b-4800-b142-a23c68697f9b" />
+
+
+
