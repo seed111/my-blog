@@ -6,12 +6,11 @@ This project documents the complete, production ready deployment of a Python Fla
 Project Goal and Solution Summary
 My primary objective was to deploy the Flask application to a production environment quickly and securely, without relying on traditional servers.
 
-| Challenge Faced            | Solution I Built                                                                 | Key Value Delivered                                                             |
-|----------------------------|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| Serverless Operations      | I achieved zero server maintenance by deploying the application using AWS ECS Fargate. | I avoided the time and cost of managing underlying EC2 virtual servers.       |
-| Security and Global Access | I used CloudFront to handle SSL termination and function as a global Content Delivery Network (CDN). | I ensured the application is accessible worldwide via HTTPS and secured at the network edge. |
-| Scalability                | I built a fault-tolerant system using an Application Load Balancer (ALB) across multiple Fargate tasks. | I delivered automatic scaling and high availability to handle variable user traffic. |
-
+| Challenge Faced            | Solution I Built                                               | Key Value Delivered                                         |
+|----------------------------|---------------------------------------------------------------|------------------------------------------------------------|
+| Serverless Operations      | Achieved zero server maintenance by deploying the app using<br>**AWS ECS Fargate**. | Avoided the time and cost of managing underlying<br>EC2 virtual servers. |
+| Security and Global Access | Used **CloudFront** for SSL termination and as a global CDN. | Ensured worldwide HTTPS access and security at the<br>network edge. |
+| Scalability                | Built a fault-tolerant system using an **ALB** across<br>multiple Fargate tasks. | Delivered automatic scaling and high availability for<br>variable user traffic. |
 
 
 Core Architecture and Request Flow
