@@ -6,11 +6,11 @@ This project documents the complete, production ready deployment of a Python Fla
 Project Goal and Solution Summary
 My primary objective was to deploy the Flask application to a production environment quickly and securely, without relying on traditional servers.
 
-| Challenge Faced           | Solution I Built                                     | Key Value Delivered                           |
-|---------------------------|-----------------------------------------------------|-----------------------------------------------|
-| Serverless Operations     | Zero server maintenance<br>Deployed using **AWS ECS Fargate** | No EC2 management<br>Saves time & cost       |
-| Security & Global Access  | SSL termination via **CloudFront**<br>Acts as global CDN | HTTPS worldwide<br>Secured at network edge   |
-| Scalability               | Fault-tolerant system<br>**ALB** across multiple Fargate tasks | Auto-scaling<br>High availability            |
+| Challenge Faced           | Solution I Built                                                                 | Key Value Delivered                                                   |
+|---------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| Serverless Operations     | I achieved zero server maintenance by deploying the application using AWS ECS Fargate. | I avoided the time and cost of managing underlying EC2 virtual servers. |
+| Security and Global Access| I used CloudFront for SSL termination and as a global CDN.                     | I ensured worldwide HTTPS access and security at the network edge.   |
+| Scalability               | I built a fault tolerant system using an Application Load Balancer ALB across multiple Fargate tasks. | I delivered automatic scaling and high availability for variable user traffic. |
 
 
 
