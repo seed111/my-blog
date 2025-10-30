@@ -24,7 +24,7 @@ Core Architecture and Request Flow
 I designed this architecture prioritizing security at the edge and cost efficiency through serverless compute.
 
 +----------------+
-|    User / Internet |
+|    User / Internet   |
 +-------+--------+
         |
       HTTPS Request
