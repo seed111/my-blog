@@ -23,34 +23,14 @@ Key Value: I enabled automatic scaling and high availability to handle changing 
 Core Architecture and Request Flow
 I designed this architecture prioritizing security at the edge and cost efficiency through serverless compute.
 
-User / Internet
-       |
-       v
-HTTPS Request
-       |
-       v
-AWS CloudFront CDN
-  SSL Termination
-  Performance Caching
-       |
-       v
-Application Load Balancer
-  Health Checks
-  Routing
-       |
-       v
-AWS ECS Fargate
-  Serverless Container Cluster
-  Scalable and auto-healing
-       |
-       v
-Tasks (1 to N)
-  Flask App listening on port 8000
-       |
-       v
-AWS CloudWatch
-  Logging
-  Metrics
+| Component               | Description                    | Details                                  |
+|-------------------------|--------------------------------|------------------------------------------|
+| User Internet           | HTTPS Request                  |                                          |
+| AWS CloudFront CDN      | CDN for distribution           | SSL Termination, Performance Caching     |
+| Application Load Balancer | Routes traffic and checks health | Health Checks, Routing               |
+| AWS ECS Fargate         | Serverless container cluster   | Scalable and auto healing                |
+| Tasks 1 to N            | Individual container tasks     | Flask App listening on port 8000         |
+| AWS CloudWatch          | Monitoring and logging         | Logging, Metrics                         |
 
 
 Implementation Workflow What I Did
