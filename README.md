@@ -6,18 +6,19 @@ This project documents the complete, production ready deployment of a Python Fla
 Project Goal and Solution Summary
 My primary objective was to deploy the Flask application to a production environment quickly and securely, without relying on traditional servers.
 
-| Challenge Faced            | Solution I Built                                               | Key Value Delivered                                         |
-|----------------------------|---------------------------------------------------------------|------------------------------------------------------------|
-| Serverless Operations      | Achieved zero server maintenance by deploying the app using<br>**AWS ECS Fargate**. | Avoided the time and cost of managing underlying<br>EC2 virtual servers. |
-| Security and Global Access | Used **CloudFront** for SSL termination and as a global CDN. | Ensured worldwide HTTPS access and security at the<br>network edge. |
-| Scalability                | Built a fault-tolerant system using an **ALB** across<br>multiple Fargate tasks. | Delivered automatic scaling and high availability for<br>variable user traffic. |
+| Challenge Faced           | Solution I Built                                     | Key Value Delivered                           |
+|---------------------------|-----------------------------------------------------|-----------------------------------------------|
+| Serverless Operations     | Zero server maintenance<br>Deployed using **AWS ECS Fargate** | No EC2 management<br>Saves time & cost       |
+| Security & Global Access  | SSL termination via **CloudFront**<br>Acts as global CDN | HTTPS worldwide<br>Secured at network edge   |
+| Scalability               | Fault-tolerant system<br>**ALB** across multiple Fargate tasks | Auto-scaling<br>High availability            |
+
 
 
 Core Architecture and Request Flow
 I designed this architecture prioritizing security at the edge and cost efficiency through serverless compute.
 
 +----------------+
-|    User / Internet    |
+|    User / Internet |
 +-------+--------+
         |
       HTTPS Request
