@@ -1,54 +1,45 @@
-PROJECT NAME: MY BLOG 
+PROJECT NAME: MY BLOG
 
-Flask Blog on AWS Fargate with CloudFront HTTPS
-This project documents the complete, production ready deployment of a Python Flask application onto a secure, scalable, and fully serverless infrastructure using Amazon Web Services AWS. I successfully integrated containerization, orchestration, global networking, and security principles.
+Flask Blog on AWS Fargate with CloudFront and HTTPS
 
-Project Goal and Solution Summary
-My primary objective was to deploy the Flask application to a production environment quickly and securely, without relying on traditional servers.
+I built this project to showcases a full production ready deployment of a Python Flask application using Amazon Web Services. The goal was to build, containerize, and deploy a secure and scalable web application without managing any servers. I used Docker for containerization, Amazon ECR for image hosting, ECS Fargate for orchestration, and an Application Load Balancer for routing and security. The project also demonstrates my understanding of DevOps concepts, serverless infrastructure, and cloud deployment automation.
 
-Challenge Faced: Serverless Operations
-Solution: I deployed the application using AWS ECS Fargate so no server maintenance was needed.
-Key Value: I saved time and avoided the cost of managing EC2 servers.
+My main objective was to deploy a Python Flask application to a production environment quickly, securely, and with minimal operational overhead. Instead of relying on EC2 servers, I used AWS Fargate to achieve a truly serverless deployment.
 
-Challenge Faced: Security and Global Access
-Solution: I used CloudFront for SSL termination and as a global CDN.
-Key Value: I made the application accessible worldwide with HTTPS and kept it secure at the network edge.
+When I faced the challenge of operating without traditional servers, I solved it by deploying the application on AWS ECS Fargate. This allowed the containers to run without managing any virtual machines, which saved cost and simplified maintenance.
 
-Challenge Faced: Scalability
-Solution: I built a fault-tolerant system using an Application Load Balancer across multiple Fargate tasks.
-Key Value: I enabled automatic scaling and high availability to handle changing user traffic.
+For security and global access, I used CloudFront and HTTPS through an Application Load Balancer. This ensured that users could access the application securely from anywhere in the world.
 
+To make the system scalable, I connected multiple Fargate tasks behind a Load Balancer. This design made the application fault-tolerant and ready to handle any level of traffic automatically.
 
+I designed the architecture with security and scalability in mind. The user sends an HTTPS request which first reaches CloudFront. CloudFront handles SSL termination and caching for faster delivery. Traffic then flows to the Application Load Balancer, which routes requests to healthy ECS Fargate tasks running the Flask container. Logs and metrics are continuously sent to CloudWatch for monitoring. Each task runs a containerized Flask app that listens on port 8000. The entire deployment is serverless, fully managed by AWS, and integrated with CloudWatch for observability.
 
-Core Architecture and Request Flow
-I designed this architecture prioritizing security at the edge and cost efficiency through serverless compute.
+I began by writing a simple Flask web application with routes for registration, greeting, and a homepage. The app was configured to listen on 0.0.0.0:8000 to make it accessible from within Docker and Fargate. After building the app, I created a Dockerfile using Python 3.12-slim. I installed dependencies through the requirements file, exposed port 8000, and set the startup command to run the Flask app. Once the Docker image was tested locally, I built and tagged it, then pushed it to my private Amazon ECR repository named flask-blog.
 
-| Component               | Description                    | Details                                  |
-|-------------------------|--------------------------------|------------------------------------------|
-| User Internet           | HTTPS Request                  |                                          |
-| AWS CloudFront CDN      | CDN for distribution           | SSL Termination, Performance Caching     |
-| Application Load Balancer | Routes traffic and checks health | Health Checks, Routing               |
-| AWS ECS Fargate         | Serverless container cluster   | Scalable and auto healing                |
-| Tasks 1 to N            | Individual container tasks     | Flask App listening on port 8000         |
-| AWS CloudWatch          | Monitoring and logging         | Logging, Metrics                         |
+On ECS, I created a task definition pointing to this image and configured CloudWatch logging to monitor the application. I deployed the ECS service on Fargate, ensuring that one running task was always maintained and healthy. Next, I created an Application Load Balancer to manage incoming traffic. It was linked to a target group configured to monitor container health on port 8000. The ALB handled HTTP and HTTPS traffic, routing requests securely to the ECS containers. Finally, CloudFront was used to add another security layer and global distribution.
 
+I successfully implemented HTTPS termination at the edge using the Application Load Balancer, ensuring encrypted communication and minimizing security risks. The architecture is fully scalable and fault-tolerant, automatically handling increases in traffic without manual intervention. Logging and performance metrics are centralized in CloudWatch, providing full visibility into container health. By combining Fargate, ECR, ALB, and CloudFront, I deployed a secure and efficient serverless web application with zero EC2 management.
 
-Implementation Workflow What I Did
+The development process started locally in VS Code, where the Flask app was written and tested on port 8000. The Dockerfile defined how the application was containerized using Python 3.12-slim. After confirming it ran correctly, the image was built and pushed to a private Amazon ECR repository named flask-blog. The repository and image details are visible in the ECR dashboard, confirming successful upload.
 
-1. Application Containerization Docker and ECR
-I updated the Python Flask application to listen on 0.0.0.0:8000 to ensure it was reachable within the container network. I created a lean Dockerfile, built the image, tagged it, and pushed it to a dedicated Amazon ECR repository my blog.
+Next, I created an ECS cluster called myblog. The ECS console shows the cluster as active, with one running service managed by AWS Fargate. The service automatically launched a task, and the task overview in ECS displays the container as running successfully with the desired status of running. This verifies that the Flask container was deployed and is functioning properly on AWS.
 
-2. Serverless Deployment on ECS Fargate
-I created an ECS Task Definition pointing to my ECR image. I also configured the task to send its logs directly to CloudWatch Logs. I deployed an ECS Service to manage the container lifecycle, ensuring that the desired number of application tasks are always running and healthy.
+Infrastructure provisioning was done through AWS CloudFormation. The CloudFormation console shows both the ECS service stack and cluster stack in a CREATE COMPLETE state, proving that the infrastructure was created automatically through infrastructure as code.
 
-3. Load Balancing and Routing ALB
-I set up an Application Load Balancer ALB as the front door for internal traffic. I configured a Target Group to check the health of my Fargate tasks and forward ALB traffic to the containers on port 8000. I attached the ECS Service to this ALB.
+The Application Load Balancer configuration shows the ALB as active with a public DNS name. It is internet-facing and distributed across multiple availability zones for high availability. The listener configuration confirms that both HTTP on port 80 and HTTPS on port 443 are active and forwarding traffic to the target group. The target group page shows that the registered target identified by IP address 10.0.36.68 on port 8000 has a health status of healthy, confirming that the load balancer can successfully route traffic to the ECS container.
 
-4. Global Security and Performance CloudFront
-I created a CloudFront Distribution, setting the ALB's DNS name as the origin source. This was a critical security step: I configured the Viewer Protocol Policy to Redirect HTTP to HTTPS. This immediately secures all user connections using the CloudFront SSL certificate, maximizing performance via the global CDN edge network.
+Each of these screenshots, from the Flask app setup to Docker, ECR, ECS, CloudFormation, ALB, and the target group, demonstrates the complete lifecycle of building, containerizing, deploying, and securing a web application in AWS.
 
-Key Achievements I Delivered
+Live Application Link:https://myblog-alb-1742662327.us-east-1.elb.amazonaws.com
 
-I successfully implemented HTTPS termination at the edge CloudFront, significantly minimizing the attack surface. I built an architecture ready for auto scaling through ECS Fargate and ALB, which can handle unexpected spikes in user traffic seamlessly. I established robust CloudWatch logging and metrics for continuous monitoring of container health and performance. I leveraged serverless services Fargate, CloudFront to achieve high availability while eliminating the operational burden and fixed cost of managing EC2 infrastructure.
+This project helped me strengthen both my cloud and security foundations. I applied secure architecture principles by implementing HTTPS encryption, container isolation, and centralized monitoring. It also improved my understanding of network traffic management, access control, and application delivery at scale. The combination of Flask, Docker, and AWS services demonstrates my ability to design, secure, and automate modern cloud solutions. This aligns directly with my professional path as a Cloud and Security Analyst, capable of building secure, scalable, and efficient infrastructures in AWS.
+
+Below are few of the screenshots from my project showing the complete process of building, containerizing, and deploying my Flask application on AWS Fargate with HTTPS enabled.
+<img width="1440" height="900" alt="Screenshot 2025-11-02 at 10 13 43" src="https://github.com/user-attachments/assets/eb2de93c-8039-48a0-a310-d28f15b2bcd2" />
+<img width="1440" height="900" alt="Screenshot 2025-11-02 at 10 13 04" src="https://github.com/user-attachments/assets/196a7957-1531-4e75-9768-0ebf02bfbf9e" />
+<img width="1440" height="900" alt="Screenshot 2025-11-02 at 10 12 43" src="https://github.com/user-attachments/assets/7fdf9fda-efde-4e3f-b37b-36da9d5a25a2" />
+<img width="1440" height="900" alt="Screenshot 2025-11-02 at 10 11 18" src="https://github.com/user-attachments/assets/bcb108e5-d4e8-48dd-9a28-2d0ae370![Uploading Screenshot 2025-11-02 at 09.14.45.png…]()
+6a91" />
+
 
 
