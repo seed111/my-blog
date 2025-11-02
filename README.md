@@ -34,7 +34,7 @@ Live Application Link:https://myblog-alb-1742662327.us-east-1.elb.amazonaws.com
 
 This project helped me strengthen both my cloud and security foundations. I applied secure architecture principles by implementing HTTPS encryption, container isolation, and centralized monitoring. It also improved my understanding of network traffic management, access control, and application delivery at scale. The combination of Flask, Docker, and AWS services demonstrates my ability to design, secure, and automate modern cloud solutions. This aligns directly with my professional path as a Cloud and Security Analyst, capable of building secure, scalable, and efficient infrastructures in AWS.
 
-Below are few of the screenshots from my project showing the complete process of building, containerizing, and deploying my Flask application on AWS Fargate with HTTPS enabled.
+Below are screenshots from my project showing the complete process of building, containerizing, and deploying my Flask application on AWS Fargate with HTTPS enabled.
 <img width="1440" height="900" alt="Screenshot 2025-11-02 at 10 13 43" src="https://github.com/user-attachments/assets/eb2de93c-8039-48a0-a310-d28f15b2bcd2" />
 <img width="1440" height="900" alt="Screenshot 2025-11-02 at 10 13 04" src="https://github.com/user-attachments/assets/196a7957-1531-4e75-9768-0ebf02bfbf9e" />
 <img width="1440" height="900" alt="Screenshot 2025-11-02 at 10 12 43" src="https://github.com/user-attachments/assets/7fdf9fda-efde-4e3f-b37b-36da9d5a25a2" />
